@@ -15,8 +15,8 @@
             --bg-card: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
+            --accent: #254bff;
+            --accent-hover: #1a38d9;
             --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
             --header-bg: rgba(15, 23, 42, 0.95);
             --border-color: rgba(255, 255, 255, 0.05);
@@ -30,8 +30,8 @@
             --bg-card: #ffffff;
             --text-main: #0f172a;
             --text-muted: #475569;
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
+            --accent: #254bff;
+            --accent-hover: #1a38d9;
             --header-bg: rgba(248, 250, 252, 0.95);
             --border-color: rgba(0, 0, 0, 0.08);
             --input-bg: #f1f5f9;
@@ -115,17 +115,20 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--text-main);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            letter-spacing: -0.5px;
+            text-transform: lowercase;
         }
 
         .logo-icon {
-            color: var(--accent);
+            width: 28px;
+            height: 28px;
         }
 
         nav {
@@ -291,13 +294,18 @@
 <body>
 
     <header id="navbar">
-        <a href="#" class="logo"><span class="logo-icon">▲</span> Summit Digital</a>
+        <a href="#" class="logo">
+            <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="8" cy="10" r="4.5" fill="var(--accent)" />
+                <rect x="20" y="4" width="9" height="28" rx="4.5" transform="rotate(25 20 4)" fill="var(--accent)" />
+            </svg>
+            summit
+        </a>
         <nav>
             <a href="#hero">Home</a>
             <a href="#services">Services</a>
             <a href="#contact">Contact</a>
             
-            <!-- Multi-Theme Dropdown -->
             <select id="themeSelect" class="theme-select" aria-label="Select Theme">
                 <option value="dark">🌙 Dark Slate</option>
                 <option value="light">☀️ Light Clean</option>
@@ -365,10 +373,8 @@
             themeSelect.value = theme;
         }
 
-        // Set initial theme on load
         applyTheme(savedTheme);
 
-        // Handle dropdown selection change
         themeSelect.addEventListener('change', (e) => {
             const selectedTheme = e.target.value;
             localStorage.setItem('theme', selectedTheme);
