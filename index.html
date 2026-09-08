@@ -19,9 +19,9 @@
             --accent-hover: #1a38d9;
             --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
             --header-bg: rgba(15, 23, 42, 0.95);
-            --border-color: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.08);
             --input-bg: #0f172a;
-            --input-border: rgba(255, 255, 255, 0.1);
+            --input-border: rgba(255, 255, 255, 0.15);
         }
 
         /* 1. Light Clean Theme */
@@ -88,6 +88,11 @@
             scroll-behavior: smooth;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
@@ -99,7 +104,7 @@
             position: fixed;
             width: 100%;
             top: 0;
-            padding: 20px 5%;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -109,13 +114,13 @@
 
         header.scrolled {
             background-color: var(--header-bg);
-            padding: 15px 5%;
+            padding: 12px 5%;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             backdrop-filter: blur(10px);
         }
 
         .logo {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-main);
             text-decoration: none;
@@ -124,6 +129,7 @@
             gap: 10px;
             letter-spacing: -0.5px;
             text-transform: lowercase;
+            z-index: 101;
         }
 
         .logo-icon {
@@ -134,18 +140,29 @@
         nav {
             display: flex;
             align-items: center;
+            gap: 20px;
         }
 
         nav a {
             color: var(--text-main);
             text-decoration: none;
-            margin-left: 30px;
             font-size: 0.95rem;
             transition: color 0.2s;
+            padding: 8px 0;
         }
 
         nav a:hover {
             color: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 101;
         }
 
         .theme-select {
@@ -156,7 +173,6 @@
             border-radius: 20px;
             cursor: pointer;
             font-size: 0.85rem;
-            margin-left: 25px;
             outline: none;
             transition: border-color 0.2s, background-color 0.3s;
         }
@@ -166,20 +182,21 @@
         }
 
         .hero {
-            height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
+            padding: 100px 20px 60px;
             background: radial-gradient(circle at center, var(--bg-card) 0%, var(--bg-dark) 100%);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.2rem, 5vw + 1rem, 3.5rem);
             margin-bottom: 20px;
             max-width: 800px;
+            line-height: 1.2;
         }
 
         .hero h1 span {
@@ -187,7 +204,7 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw + 0.5rem, 1.2rem);
             color: var(--text-muted);
             max-width: 600px;
             margin-bottom: 40px;
@@ -200,10 +217,12 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             transition: background 0.2s, transform 0.2s;
             border: none;
             cursor: pointer;
+            display: inline-block;
+            touch-action: manipulation;
         }
 
         .cta-btn:hover {
@@ -211,51 +230,272 @@
             transform: translateY(-2px);
         }
 
-        .services {
-            padding: 100px 5%;
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: -40px auto 40px;
+            padding: 0 5%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 25px 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .stat-card h3 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .section {
+            padding: 80px 5%;
             text-align: center;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 25px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .card {
             background-color: var(--bg-card);
-            padding: 40px 30px;
+            padding: 30px 25px;
             border-radius: 12px;
             transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
             border: 1px solid var(--border-color);
+            text-align: left;
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-6px);
             border-color: var(--accent);
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
 
         .card h3 {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             margin-bottom: 15px;
         }
 
         .card p {
             color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
-        .contact {
-            padding: 100px 5%;
+        /* Portfolio Filters */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .portfolio-card {
+            overflow: hidden;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 180px;
+            background-color: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .portfolio-content {
+            padding: 20px;
+        }
+
+        .portfolio-tag {
+            display: inline-block;
+            background: rgba(37, 75, 255, 0.1);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Pricing Section */
+        .pricing-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--accent);
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: clamp(2.2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin: 15px 0 10px;
+            color: var(--text-main);
+        }
+
+        .price span {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 20px 0 30px;
+            text-align: left;
+        }
+
+        .features-list li {
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* FAQ Accordion */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .faq-item {
             background-color: var(--bg-card);
-            text-align: center;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 18px 20px;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-muted);
+            padding: 0 20px;
+            font-size: 0.95rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 0 20px 18px;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-toggle {
+            transition: transform 0.3s ease;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--bg-card);
         }
 
         form {
@@ -263,17 +503,18 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
+        /* Set font-size to 16px to prevent iOS Safari auto-zoom on form tap */
         input, textarea {
             width: 100%;
-            padding: 15px;
+            padding: 14px 16px;
             border-radius: 8px;
             border: 1px solid var(--input-border);
             background-color: var(--input-bg);
             color: var(--text-main);
-            font-size: 1rem;
+            font-size: 16px;
             outline: none;
             transition: border-color 0.2s, background-color 0.3s, color 0.3s;
         }
@@ -284,10 +525,52 @@
 
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 25px 20px;
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+        }
+
+        /* Mobile Navigation Overlay & Media Queries */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100dvh;
+                background-color: var(--bg-card);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 90px 30px 40px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+                border-left: 1px solid var(--border-color);
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav a {
+                font-size: 1.1rem;
+                width: 100%;
+            }
+
+            .theme-select {
+                margin-top: 15px;
+                width: 100%;
+            }
+
+            .stats {
+                margin-top: 20px;
+            }
         }
     </style>
 </head>
@@ -301,10 +584,16 @@
             </svg>
             summit
         </a>
-        <nav>
-            <a href="#hero">Home</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">☰</button>
+
+        <nav id="navMenu">
+            <a href="#hero" class="nav-link">Home</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#portfolio" class="nav-link">Work</a>
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+            <a href="#contact" class="nav-link">Contact</a>
             
             <select id="themeSelect" class="theme-select" aria-label="Select Theme">
                 <option value="dark">🌙 Dark Slate</option>
@@ -318,30 +607,188 @@
 
     <section class="hero" id="hero">
         <h1>Elevate Your Brand to the <span>Summit</span></h1>
-        <p>We build lightning-fast, high-converting websites for businesses ready to scale their digital presence.</p>
+        <p>We build lightning-fast, high-converting websites and web apps for businesses ready to scale their digital presence.</p>
         <a href="#contact" class="cta-btn">Start Your Project</a>
     </section>
 
-    <section class="services" id="services">
+    <!-- Stats Bar -->
+    <div class="stats">
+        <div class="stat-card">
+            <h3>50+</h3>
+            <p>Projects Delivered</p>
+        </div>
+        <div class="stat-card">
+            <h3>99.9%</h3>
+            <p>Client Uptime</p>
+        </div>
+        <div class="stat-card">
+            <h3>2.5x</h3>
+            <p>Avg Conversion Boost</p>
+        </div>
+        <div class="stat-card">
+            <h3>24/7</h3>
+            <p>Support & Maintenance</p>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <section class="section" id="services">
         <h2 class="section-title">Our Expertise</h2>
+        <p class="section-subtitle">Tailored digital solutions built with cutting-edge web technologies.</p>
         <div class="grid">
             <div class="card">
                 <h3>Custom Web Design</h3>
-                <p>Beautiful, responsive designs tailored to your brand identity and optimized for all devices.</p>
+                <p>Beautiful, responsive designs tailored to your brand identity and optimized for conversion across all devices.</p>
             </div>
             <div class="card">
                 <h3>AI & Web Apps</h3>
-                <p>Advanced integration of modern tools, API routing, and AI models to automate your business.</p>
+                <p>Advanced integration of modern tools, custom API routing, and AI models to automate your business workflows.</p>
             </div>
             <div class="card">
-                <h3>SEO Optimization</h3>
-                <p>Code structured for search engines so your customers can actually find you on Google.</p>
+                <h3>SEO & Performance</h3>
+                <p>Clean, semantically structured code so your business ranks high on search engine result pages.</p>
             </div>
         </div>
     </section>
 
-    <section class="contact" id="contact">
+    <!-- Portfolio / Work -->
+    <section class="section" id="portfolio">
+        <h2 class="section-title">Featured Work</h2>
+        <p class="section-subtitle">A glimpse at recent projects built for growing businesses.</p>
+        
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterPortfolio('all', event)">All Projects</button>
+            <button class="filter-btn" onclick="filterPortfolio('web', event)">Websites</button>
+            <button class="filter-btn" onclick="filterPortfolio('app', event)">Web Apps</button>
+        </div>
+
+        <div class="grid">
+            <div class="portfolio-card" data-category="web">
+                <div class="portfolio-img">💻</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-tag">Web Design</span>
+                    <h3>Apex Financial Platform</h3>
+                    <p>A sleek, high-converting landing portal built for a modern fintech consulting firm.</p>
+                </div>
+            </div>
+            <div class="portfolio-card" data-category="app">
+                <div class="portfolio-img">🤖</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-tag">AI Web App</span>
+                    <h3>AutomateHR Portal</h3>
+                    <p>Custom AI dashboard that automates candidate screening and interview scheduling.</p>
+                </div>
+            </div>
+            <div class="portfolio-card" data-category="web">
+                <div class="portfolio-img">🛍️</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-tag">E-Commerce</span>
+                    <h3>Luxe Boutique Store</h3>
+                    <p>Lightning-fast custom digital storefront with seamless checkout capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Packages -->
+    <section class="section" id="pricing">
+        <h2 class="section-title">Simple, Transparent Pricing</h2>
+        <p class="section-subtitle">Choose the package that best fits your business goals.</p>
+        
+        <div class="grid">
+            <div class="card pricing-card">
+                <div>
+                    <h3>Starter</h3>
+                    <p>Perfect for small businesses needing a modern, fast web presence.</p>
+                    <div class="price">$1,499 <span>/ one-time</span></div>
+                    <ul class="features-list">
+                        <li>5 Custom Designed Pages</li>
+                        <li>Mobile & Desktop Responsive</li>
+                        <li>Contact Form & Supabase Backend</li>
+                        <li>Basic SEO Setup</li>
+                        <li>1 Week Turnaround</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="cta-btn" style="text-align: center;">Get Started</a>
+            </div>
+
+            <div class="card pricing-card popular">
+                <span class="badge">Most Popular</span>
+                <div>
+                    <h3>Growth Scale</h3>
+                    <p>Ideal for businesses looking to convert leads & automate tasks.</p>
+                    <div class="price">$2,999 <span>/ one-time</span></div>
+                    <ul class="features-list">
+                        <li>Up to 10 Custom Pages</li>
+                        <li>CMS / Database Integration</li>
+                        <li>AI Tool or API Integration</li>
+                        <li>Advanced SEO & Analytics</li>
+                        <li>Priority Support</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="cta-btn" style="text-align: center;">Get Started</a>
+            </div>
+
+            <div class="card pricing-card">
+                <div>
+                    <h3>Custom App</h3>
+                    <p>Tailored web platforms, SaaS MVPs, and complex AI workflows.</p>
+                    <div class="price">Custom</div>
+                    <ul class="features-list">
+                        <li>Custom Full-Stack Architecture</li>
+                        <li>User Authentication & Portals</li>
+                        <li>Third-Party API Integrations</li>
+                        <li>Dedicated Project Manager</li>
+                        <li>Ongoing Maintenance Options</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="cta-btn" style="text-align: center;">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" id="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Got questions? We have answers.</p>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">
+                    How long does a website project take?
+                    <span class="faq-toggle">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Most standard projects take between 1 to 3 weeks depending on the scope, feature requirements, and content readiness.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Do you offer ongoing website maintenance?
+                    <span class="faq-toggle">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes, we provide ongoing support packages that cover updates, security monitoring, database backups, and SEO adjustments.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Can you integrate AI tools into my existing website?
+                    <span class="faq-toggle">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Absolutely! We can build AI chatbots, lead capture assistants, automated document generators, or custom API tools for your workflow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section contact" id="contact">
         <h2 class="section-title">Let's Build Something Great</h2>
+        <p class="section-subtitle">Tell us about your project and we'll get back to you within 24 hours.</p>
         <form id="contactForm">
             <input type="text" id="name" placeholder="Your Name" required>
             <input type="email" id="email" placeholder="Your Email" required>
@@ -360,7 +807,24 @@
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpmbm9zaWR6dWNrZm1kaW1hdnNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg4Nzk5MDMsImV4cCI6MjEwNDQ1NTkwM30.pUpliiWuYPxSIbjNTUrEN7xT8BBR1Q6IB2WJSC1ZqeE';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // 1. Multi-Theme Switcher Logic
+        // 1. Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.textContent = '☰';
+            });
+        });
+
+        // 2. Theme Switcher
         const themeSelect = document.getElementById('themeSelect');
         const savedTheme = localStorage.getItem('theme') || 'dark';
 
@@ -381,7 +845,7 @@
             applyTheme(selectedTheme);
         });
 
-        // 2. Dynamic Sticky Header
+        // 3. Sticky Header
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -391,7 +855,32 @@
             }
         });
 
-        // 3. Contact Form Submission
+        // 4. Portfolio Filter Logic
+        function filterPortfolio(category, evt) {
+            const cards = document.querySelectorAll('.portfolio-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (evt) evt.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 5. FAQ Accordion Logic
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // 6. Contact Form Submission
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
 
