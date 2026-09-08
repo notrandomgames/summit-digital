@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summit Digital | Web Creation Services</title>
     
-    <!-- Supabase Client CDN -->
+    <!-- Supabase Client Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
@@ -33,7 +33,6 @@
             line-height: 1.6;
         }
 
-        /* Navigation */
         header {
             position: fixed;
             width: 100%;
@@ -79,7 +78,6 @@
             color: var(--accent);
         }
 
-        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -126,7 +124,6 @@
             transform: translateY(-2px);
         }
 
-        /* Services Section */
         .services {
             padding: 100px 5%;
             text-align: center;
@@ -167,7 +164,6 @@
             color: var(--text-muted);
         }
 
-        /* Contact Section */
         .contact {
             padding: 100px 5%;
             background-color: var(--bg-card);
@@ -256,12 +252,12 @@
     </footer>
 
     <script>
-        // Initialize Supabase Client
-        const SUPABASE_URL = 'https://zfnosidzuckfmdimavsp.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpmbm9zaWR6dWNrZm1kaW1hdnNwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4ODg3OTkwMywiZXhwIjoyMTA0NDU1OTAzfQ.7VhQ40RGcaB6mvFEay7a5aDJUmDFZW7YACw3VXi9phk';
+        // 1. Initialize Supabase (Replace with your actual keys from Supabase Project Settings > API)
+        const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL';
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // 1. Dynamic Sticky Header
+        // 2. Dynamic Sticky Header
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -271,12 +267,12 @@
             }
         });
 
-        // 2. Contact Form Handling with Supabase
+        // 3. Contact Form Submission to Supabase
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
 
         contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Prevents the page from refreshing
+            e.preventDefault(); // Prevents page refresh
             
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
@@ -286,16 +282,13 @@
             submitBtn.disabled = true;
             
             try {
-                // Send data directly to Supabase table named 'messages'
                 const { error } = await supabase
                     .from('messages')
                     .insert([{ name, email, message }]);
 
-                if (error) {
-                    throw error;
-                }
+                if (error) throw error;
 
-                alert(`Thank you, ${name}! Your message has been sent to Summit Digital. We will be in touch shortly.`);
+                alert(`Thank you, ${name}! Your message has been sent to Supabase.`);
                 contactForm.reset();
             } catch (err) {
                 alert("Failed to send message: " + err.message);
