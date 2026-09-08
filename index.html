@@ -383,6 +383,46 @@
             font-weight: 600;
         }
 
+        /* Tech Stack Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tech-badge {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 25px 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .tech-badge:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .tech-icon {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .tech-badge h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .tech-badge p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
         /* FAQ Accordion */
         .faq-container {
             max-width: 800px;
@@ -553,6 +593,7 @@
             <a href="#hero" class="nav-link">Home</a>
             <a href="#services" class="nav-link">Services</a>
             <a href="#portfolio" class="nav-link">Work</a>
+            <a href="#tech" class="nav-link">Tech</a>
             <a href="#faq" class="nav-link">FAQ</a>
             <a href="#contact" class="nav-link">Contact</a>
             <a href="https://instagram.com/summit._digital" target="_blank" rel="noopener noreferrer" class="nav-link">
@@ -651,6 +692,45 @@
                     <h3>Luxe Boutique Store</h3>
                     <p>Lightning-fast custom digital storefront with seamless checkout capabilities.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Showcase -->
+    <section class="section" id="tech">
+        <h2 class="section-title">Our Tech Stack</h2>
+        <p class="section-subtitle">Modern, high-performance tools engineered for speed and reliability.</p>
+
+        <div class="tech-grid">
+            <div class="tech-badge">
+                <span class="tech-icon">⚡</span>
+                <h4>Modern Frontend</h4>
+                <p>Clean, responsive HTML, CSS & JavaScript for instant page loads.</p>
+            </div>
+            <div class="tech-badge">
+                <span class="tech-icon">🗄️</span>
+                <h4>Supabase DB</h4>
+                <p>Realtime database, row-level security, and instant form storage.</p>
+            </div>
+            <div class="tech-badge">
+                <span class="tech-icon">🤖</span>
+                <h4>AI Integrations</h4>
+                <p>OpenAI & LLM API connections to automate customer workflows.</p>
+            </div>
+            <div class="tech-badge">
+                <span class="tech-icon">📱</span>
+                <h4>Mobile First</h4>
+                <p>Fluid, adaptive layouts built for smartphones and tablets.</p>
+            </div>
+            <div class="tech-badge">
+                <span class="tech-icon">🔒</span>
+                <h4>Security & RLS</h4>
+                <p>Enterprise-grade policies safeguarding your user data.</p>
+            </div>
+            <div class="tech-badge">
+                <span class="tech-icon">🚀</span>
+                <h4>Cloud Edge APIs</h4>
+                <p>Ultra-fast edge routing for rapid serverless response times.</p>
             </div>
         </div>
     </section>
