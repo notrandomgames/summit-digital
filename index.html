@@ -10,6 +10,7 @@
 
     <style>
         :root {
+            /* Default: Dark Slate Theme */
             --bg-dark: #0f172a;
             --bg-card: #1e293b;
             --text-main: #f8fafc;
@@ -17,6 +18,66 @@
             --accent: #3b82f6;
             --accent-hover: #2563eb;
             --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --header-bg: rgba(15, 23, 42, 0.95);
+            --border-color: rgba(255, 255, 255, 0.05);
+            --input-bg: #0f172a;
+            --input-border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 1. Light Clean Theme */
+        [data-theme="light"] {
+            --bg-dark: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --header-bg: rgba(248, 250, 252, 0.95);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --input-bg: #f1f5f9;
+            --input-border: rgba(0, 0, 0, 0.15);
+        }
+
+        /* 2. Cyberpunk Neon Theme */
+        [data-theme="cyberpunk"] {
+            --bg-dark: #09090b;
+            --bg-card: #18181b;
+            --text-main: #00f0ff;
+            --text-muted: #a1a1aa;
+            --accent: #ff007f;
+            --accent-hover: #e00070;
+            --header-bg: rgba(9, 9, 11, 0.95);
+            --border-color: rgba(0, 240, 255, 0.2);
+            --input-bg: #18181b;
+            --input-border: rgba(255, 0, 127, 0.4);
+        }
+
+        /* 3. Emerald Forest Theme */
+        [data-theme="emerald"] {
+            --bg-dark: #062016;
+            --bg-card: #0b3224;
+            --text-main: #ecfdf5;
+            --text-muted: #6ee7b7;
+            --accent: #10b981;
+            --accent-hover: #059669;
+            --header-bg: rgba(6, 32, 22, 0.95);
+            --border-color: rgba(16, 185, 129, 0.2);
+            --input-bg: #062016;
+            --input-border: rgba(16, 185, 129, 0.3);
+        }
+
+        /* 4. Sunset Amber Theme */
+        [data-theme="sunset"] {
+            --bg-dark: #1e1b4b;
+            --bg-card: #2e1065;
+            --text-main: #faf5ff;
+            --text-muted: #c084fc;
+            --accent: #f59e0b;
+            --accent-hover: #d97706;
+            --header-bg: rgba(30, 27, 75, 0.95);
+            --border-color: rgba(245, 158, 11, 0.2);
+            --input-bg: #1e1b4b;
+            --input-border: rgba(245, 158, 11, 0.3);
         }
 
         * {
@@ -31,6 +92,7 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         header {
@@ -46,9 +108,9 @@
         }
 
         header.scrolled {
-            background-color: rgba(15, 23, 42, 0.95);
+            background-color: var(--header-bg);
             padding: 15px 5%;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             backdrop-filter: blur(10px);
         }
 
@@ -66,6 +128,11 @@
             color: var(--accent);
         }
 
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
         nav a {
             color: var(--text-main);
             text-decoration: none;
@@ -78,6 +145,23 @@
             color: var(--accent);
         }
 
+        .theme-select {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-left: 25px;
+            outline: none;
+            transition: border-color 0.2s, background-color 0.3s;
+        }
+
+        .theme-select:hover {
+            border-color: var(--accent);
+        }
+
         .hero {
             height: 100vh;
             display: flex;
@@ -86,7 +170,7 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
-            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            background: radial-gradient(circle at center, var(--bg-card) 0%, var(--bg-dark) 100%);
         }
 
         .hero h1 {
@@ -146,13 +230,14 @@
             background-color: var(--bg-card);
             padding: 40px 30px;
             border-radius: 12px;
-            transition: transform 0.3s;
-            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border-color);
         }
 
         .card:hover {
             transform: translateY(-10px);
             border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
 
         .card h3 {
@@ -182,11 +267,12 @@
             width: 100%;
             padding: 15px;
             border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background-color: var(--bg-dark);
+            border: 1px solid var(--input-border);
+            background-color: var(--input-bg);
             color: var(--text-main);
             font-size: 1rem;
             outline: none;
+            transition: border-color 0.2s, background-color 0.3s, color 0.3s;
         }
 
         input:focus, textarea:focus {
@@ -196,7 +282,7 @@
         footer {
             text-align: center;
             padding: 30px;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border-top: 1px solid var(--border-color);
             color: var(--text-muted);
             font-size: 0.9rem;
         }
@@ -210,6 +296,15 @@
             <a href="#hero">Home</a>
             <a href="#services">Services</a>
             <a href="#contact">Contact</a>
+            
+            <!-- Multi-Theme Dropdown -->
+            <select id="themeSelect" class="theme-select" aria-label="Select Theme">
+                <option value="dark">🌙 Dark Slate</option>
+                <option value="light">☀️ Light Clean</option>
+                <option value="cyberpunk">⚡ Cyberpunk</option>
+                <option value="emerald">🌲 Emerald</option>
+                <option value="sunset">🌅 Sunset</option>
+            </select>
         </nav>
     </header>
 
@@ -255,11 +350,32 @@
         // Initialize Supabase Client
         const SUPABASE_URL = 'https://zfnosidzuckfmdimavsp.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpmbm9zaWR6dWNrZm1kaW1hdnNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg4Nzk5MDMsImV4cCI6MjEwNDQ1NTkwM30.pUpliiWuYPxSIbjNTUrEN7xT8BBR1Q6IB2WJSC1ZqeE';
-        
-        // Changed to supabaseClient to prevent naming collision with the library
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // 1. Dynamic Sticky Header
+        // 1. Multi-Theme Switcher Logic
+        const themeSelect = document.getElementById('themeSelect');
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', theme);
+            }
+            themeSelect.value = theme;
+        }
+
+        // Set initial theme on load
+        applyTheme(savedTheme);
+
+        // Handle dropdown selection change
+        themeSelect.addEventListener('change', (e) => {
+            const selectedTheme = e.target.value;
+            localStorage.setItem('theme', selectedTheme);
+            applyTheme(selectedTheme);
+        });
+
+        // 2. Dynamic Sticky Header
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -269,12 +385,12 @@
             }
         });
 
-        // 2. Contact Form Submission to Supabase
+        // 3. Contact Form Submission
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
 
         contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Prevents page refresh
+            e.preventDefault();
             
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
@@ -284,14 +400,11 @@
             submitBtn.disabled = true;
             
             try {
-                // Using supabaseClient instead of supabase
                 const { error } = await supabaseClient
                     .from('messages')
                     .insert([{ name, email, message }]);
 
-                if (error) {
-                    throw error;
-                }
+                if (error) throw error;
 
                 alert(`Thank you, ${name}! Your message has been sent successfully.`);
                 contactForm.reset();
