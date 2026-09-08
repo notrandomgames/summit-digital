@@ -380,64 +380,6 @@
             font-weight: 600;
         }
 
-        /* Pricing Section */
-        .pricing-card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .pricing-card.popular {
-            border: 2px solid var(--accent);
-        }
-
-        .badge {
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            background: var(--accent);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: bold;
-        }
-
-        .price {
-            font-size: clamp(2.2rem, 4vw, 2.8rem);
-            font-weight: 700;
-            margin: 15px 0 10px;
-            color: var(--text-main);
-        }
-
-        .price span {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            font-weight: normal;
-        }
-
-        .features-list {
-            list-style: none;
-            margin: 20px 0 30px;
-            text-align: left;
-        }
-
-        .features-list li {
-            margin-bottom: 10px;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-        }
-
-        .features-list li::before {
-            content: "✓";
-            color: var(--accent);
-            font-weight: bold;
-        }
-
         /* FAQ Accordion */
         .faq-container {
             max-width: 800px;
@@ -506,7 +448,6 @@
             gap: 15px;
         }
 
-        /* Set font-size to 16px to prevent iOS Safari auto-zoom on form tap */
         input, textarea {
             width: 100%;
             padding: 14px 16px;
@@ -591,7 +532,6 @@
             <a href="#hero" class="nav-link">Home</a>
             <a href="#services" class="nav-link">Services</a>
             <a href="#portfolio" class="nav-link">Work</a>
-            <a href="#pricing" class="nav-link">Pricing</a>
             <a href="#faq" class="nav-link">FAQ</a>
             <a href="#contact" class="nav-link">Contact</a>
             
@@ -614,15 +554,11 @@
     <!-- Stats Bar -->
     <div class="stats">
         <div class="stat-card">
-            <h3>50+</h3>
-            <p>Projects Delivered</p>
-        </div>
-        <div class="stat-card">
             <h3>99.9%</h3>
             <p>Client Uptime</p>
         </div>
         <div class="stat-card">
-            <h3>2.5x</h3>
+            <h3>1x</h3>
             <p>Avg Conversion Boost</p>
         </div>
         <div class="stat-card">
@@ -686,63 +622,6 @@
                     <h3>Luxe Boutique Store</h3>
                     <p>Lightning-fast custom digital storefront with seamless checkout capabilities.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Packages -->
-    <section class="section" id="pricing">
-        <h2 class="section-title">Simple, Transparent Pricing</h2>
-        <p class="section-subtitle">Choose the package that best fits your business goals.</p>
-        
-        <div class="grid">
-            <div class="card pricing-card">
-                <div>
-                    <h3>Starter</h3>
-                    <p>Perfect for small businesses needing a modern, fast web presence.</p>
-                    <div class="price">$1,499 <span>/ one-time</span></div>
-                    <ul class="features-list">
-                        <li>5 Custom Designed Pages</li>
-                        <li>Mobile & Desktop Responsive</li>
-                        <li>Contact Form & Supabase Backend</li>
-                        <li>Basic SEO Setup</li>
-                        <li>1 Week Turnaround</li>
-                    </ul>
-                </div>
-                <a href="#contact" class="cta-btn" style="text-align: center;">Get Started</a>
-            </div>
-
-            <div class="card pricing-card popular">
-                <span class="badge">Most Popular</span>
-                <div>
-                    <h3>Growth Scale</h3>
-                    <p>Ideal for businesses looking to convert leads & automate tasks.</p>
-                    <div class="price">$2,999 <span>/ one-time</span></div>
-                    <ul class="features-list">
-                        <li>Up to 10 Custom Pages</li>
-                        <li>CMS / Database Integration</li>
-                        <li>AI Tool or API Integration</li>
-                        <li>Advanced SEO & Analytics</li>
-                        <li>Priority Support</li>
-                    </ul>
-                </div>
-                <a href="#contact" class="cta-btn" style="text-align: center;">Get Started</a>
-            </div>
-
-            <div class="card pricing-card">
-                <div>
-                    <h3>Custom App</h3>
-                    <p>Tailored web platforms, SaaS MVPs, and complex AI workflows.</p>
-                    <div class="price">Custom</div>
-                    <ul class="features-list">
-                        <li>Custom Full-Stack Architecture</li>
-                        <li>User Authentication & Portals</li>
-                        <li>Third-Party API Integrations</li>
-                        <li>Dedicated Project Manager</li>
-                        <li>Ongoing Maintenance Options</li>
-                    </ul>
-                </div>
-                <a href="#contact" class="cta-btn" style="text-align: center;">Contact Us</a>
             </div>
         </div>
     </section>
