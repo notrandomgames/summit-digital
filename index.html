@@ -149,6 +149,9 @@
             font-size: 0.95rem;
             transition: color 0.2s;
             padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         nav a:hover {
@@ -466,10 +469,28 @@
 
         footer {
             text-align: center;
-            padding: 25px 20px;
+            padding: 30px 20px;
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
             font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .social-link {
+            color: var(--text-main);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
         }
 
         /* Mobile Navigation Overlay & Media Queries */
@@ -534,6 +555,14 @@
             <a href="#portfolio" class="nav-link">Work</a>
             <a href="#faq" class="nav-link">FAQ</a>
             <a href="#contact" class="nav-link">Contact</a>
+            <a href="https://instagram.com/summit._digital" target="_blank" rel="noopener noreferrer" class="nav-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                Instagram
+            </a>
             
             <select id="themeSelect" class="theme-select" aria-label="Select Theme">
                 <option value="dark">🌙 Dark Slate</option>
@@ -677,6 +706,14 @@
     </section>
 
     <footer>
+        <a href="https://instagram.com/summit._digital" target="_blank" rel="noopener noreferrer" class="social-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            @summit._digital
+        </a>
         <p>&copy; 2026 Summit Digital. All rights reserved.</p>
     </footer>
 
