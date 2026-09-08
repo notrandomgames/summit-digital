@@ -252,10 +252,12 @@
     </footer>
 
     <script>
-        // Initialize Supabase Client (Paste your actual project URL and anon public key here)
+        // Initialize Supabase Client
         const SUPABASE_URL = 'https://zfnosidzuckfmdimavsp.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpmbm9zaWR6dWNrZm1kaW1hdnNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg4Nzk5MDMsImV4cCI6MjEwNDQ1NTkwM30.pUpliiWuYPxSIbjNTUrEN7xT8BBR1Q6IB2WJSC1ZqeE';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        // Changed to supabaseClient to prevent naming collision with the library
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // 1. Dynamic Sticky Header
         const navbar = document.getElementById('navbar');
@@ -282,7 +284,8 @@
             submitBtn.disabled = true;
             
             try {
-                const { error } = await supabase
+                // Using supabaseClient instead of supabase
+                const { error } = await supabaseClient
                     .from('messages')
                     .insert([{ name, email, message }]);
 
