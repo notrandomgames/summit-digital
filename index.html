@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summit Digital | Web Creation Services</title>
+    
+    <!-- Supabase Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         :root {
             --bg-dark: #0f172a;
@@ -243,7 +247,7 @@
             <input type="text" id="name" placeholder="Your Name" required>
             <input type="email" id="email" placeholder="Your Email" required>
             <textarea id="message" rows="5" placeholder="Tell us about your project..." required></textarea>
-            <button type="submit" class="cta-btn">Send Message</button>
+            <button type="submit" class="cta-btn" id="submitBtn">Send Message</button>
         </form>
     </section>
 
@@ -252,6 +256,11 @@
     </footer>
 
     <script>
+        // Initialize Supabase Client
+        const SUPABASE_URL = 'https://zfnosidzuckfmdimavsp.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpmbm9zaWR6dWNrZm1kaW1hdnNwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4ODg3OTkwMywiZXhwIjoyMTA0NDU1OTAzfQ.7VhQ40RGcaB6mvFEay7a5aDJUmDFZW7YACw3VXi9phk';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         // 1. Dynamic Sticky Header
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
@@ -262,19 +271,38 @@
             }
         });
 
-        // 2. Contact Form Handling
+        // 2. Contact Form Handling with Supabase
         const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
+        const submitBtn = document.getElementById('submitBtn');
+
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault(); // Prevents the page from refreshing
             
-            // Get the values the user typed in
-            const name = document.getElementById('name').value;
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
             
-            // Simulate a successful form submission
-            alert(`Thank you, ${name}! Your message has been sent to Summit Digital. We will be in touch shortly.`);
-            
-            // Clear the form
-            contactForm.reset();
+            try {
+                // Send data directly to Supabase table named 'messages'
+                const { error } = await supabase
+                    .from('messages')
+                    .insert([{ name, email, message }]);
+
+                if (error) {
+                    throw error;
+                }
+
+                alert(`Thank you, ${name}! Your message has been sent to Summit Digital. We will be in touch shortly.`);
+                contactForm.reset();
+            } catch (err) {
+                alert("Failed to send message: " + err.message);
+            } finally {
+                submitBtn.innerText = "Send Message";
+                submitBtn.disabled = false;
+            }
         });
     </script>
 </body>
