@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summit Digital | Web Creation Services</title>
     
-    <!-- Supabase Client Library -->
+    <!-- Supabase Client CDN Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
@@ -252,12 +252,12 @@
     </footer>
 
     <script>
-        // 1. Initialize Supabase (Replace with your actual keys from Supabase Project Settings > API)
-        const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL';
-        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+        // Initialize Supabase Client (Paste your actual project URL and anon public key here)
+        const SUPABASE_URL = 'https://zfnosidzuckfmdimavsp.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpmbm9zaWR6dWNrZm1kaW1hdnNwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4ODg3OTkwMywiZXhwIjoyMTA0NDU1OTAzfQ.7VhQ40RGcaB6mvFEay7a5aDJUmDFZW7YACw3VXi9phk';
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // 2. Dynamic Sticky Header
+        // 1. Dynamic Sticky Header
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -267,7 +267,7 @@
             }
         });
 
-        // 3. Contact Form Submission to Supabase
+        // 2. Contact Form Submission to Supabase
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
 
@@ -286,9 +286,11 @@
                     .from('messages')
                     .insert([{ name, email, message }]);
 
-                if (error) throw error;
+                if (error) {
+                    throw error;
+                }
 
-                alert(`Thank you, ${name}! Your message has been sent to Supabase.`);
+                alert(`Thank you, ${name}! Your message has been sent successfully.`);
                 contactForm.reset();
             } catch (err) {
                 alert("Failed to send message: " + err.message);
